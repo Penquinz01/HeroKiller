@@ -22,6 +22,14 @@ namespace AI.Enemy
             _stateMachine = new EnemyStateMachine(ai,controller);
         }
 
-        
+        private void Update()
+        {
+            _stateMachine.Update();
+        }
+
+        private void FixedUpdate()
+        {
+            _stateMachine.FixedUpdate();
+        }
     }
 }
