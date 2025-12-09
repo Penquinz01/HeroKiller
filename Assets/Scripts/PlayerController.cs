@@ -24,6 +24,6 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        _controller.Jump(); 
+        _controller.Jump(_moveInput.x); 
     } 
 }

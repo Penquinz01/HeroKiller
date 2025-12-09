@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -8,7 +9,7 @@ namespace CharacterControllers
     public class CharacterController2D : MonoBehaviour
     {
         private Rigidbody2D _rb;
-        private CapsuleCollider2D _col;
+        [SerializeField]private CapsuleCollider2D _col;
         
         #region Movement
         [Header("Movement")]
@@ -39,7 +40,7 @@ namespace CharacterControllers
             _rb.AddForce(movement * acceleration);
         }
 
-        public void Jump()
+        public void Jump(float direction)
         {
             if (!GroundCheck())
             {
@@ -47,12 +48,19 @@ namespace CharacterControllers
             }
             Debug.Log("Jump");
             Vector2 jumpForce = HelperMath.CalculateJumpForce(_jumpHeight, _jumpRange, _gravity);
+            jumpForce.x *= direction;
             _rb.AddForce(jumpForce, ForceMode2D.Impulse);
         }
 
         private bool GroundCheck()
         {
             return Physics2D.CircleCast(transform.position, _col.bounds.size.x / 2, Vector2.down, _groundCheckDistance, _groundLayer);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position+Vector3.down*_groundCheckDistance, _col.bounds.size.x / 2);
         }
     }
 }

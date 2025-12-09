@@ -14,8 +14,7 @@ public static class HelperMath
     public static Vector2 CalculateJumpForce(float jumpHeight, float jumpRange,float _gravity)
     {
         float vertical = Mathf.Sqrt(2*jumpHeight*_gravity);
-        float horizontal = jumpRange * _gravity;
-        horizontal /= vertical * 2;
+        float horizontal = (jumpRange * _gravity)/(2*vertical);
         return new Vector2(horizontal, vertical);
     }
 }
