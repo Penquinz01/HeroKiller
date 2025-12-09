@@ -1,8 +1,7 @@
 using UnityEngine;
 using CharacterControllers;
-using AI;
 
-namespace AI.StateMachine
+namespace AI.StateMachines
 {
     public abstract class States
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AI.StateMachine
+namespace AI.StateMachines
 {
     public class StateMachine
     {
@@ -11,6 +11,16 @@ namespace AI.StateMachine
             currentState?.ExitState();
             currentState = newState;
             currentState.EnterState();
+        }
+
+        public void Update()
+        {
+            currentState?.UpdateState();
+        }
+
+        public void FixedUpdate()
+        {
+            currentState?.FixedUpdateState();
         }
     }
 }
