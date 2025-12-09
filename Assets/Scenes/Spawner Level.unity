@@ -770,9 +770,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterControllers.CharacterController2D
   _col: {fileID: 1047330321}
-  _moveSpeed: 5
-  _accelarationTime: 0.2
-  _decelerationTime: 0.002
+  _moveSpeed: 8
+  _accelarationTime: 0.4
+  _decelerationTime: 0.000001
   _groundCheckDistance: 0.88
   _groundLayer:
     serializedVersion: 2

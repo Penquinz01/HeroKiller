@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     {
         _inputHandler = new InputHandler();
         _inputHandler.jumpEvent += Jump;
+        _inputHandler.actionEvent += ActionEvent;
         _controller = GetComponent<CharacterController2D>();
     }
 
@@ -25,5 +26,10 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         _controller.Jump(_moveInput.x); 
-    } 
+    }
+
+    private void ActionEvent()
+    {
+        
+    }
 }
