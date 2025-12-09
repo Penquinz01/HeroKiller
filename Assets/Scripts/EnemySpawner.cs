@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void Update()
     {
+        heroPos = GameObject.FindGameObjectWithTag("Hero").transform.position;
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             int ch = Random.Range(1, 5); // 1:left, 2:top, 3:right, 4:bottom
