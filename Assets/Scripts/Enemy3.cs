@@ -1,18 +1,20 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy3 : MonoBehaviour
 {
     Vector2 heroPos;
+    GameObject hero;
     Vector3 dir;
     [SerializeField] float speed = 5f;
     void Start()
     {
-        heroPos = GameObject.FindGameObjectWithTag("Hero").transform.position;
+        hero = GameObject.FindGameObjectWithTag("Hero");
+        heroPos = hero.transform.position;
     }
 
     void Update()
     {
-        heroPos = GameObject.FindGameObjectWithTag("Hero").transform.position;
+        heroPos = hero.transform.position;
         dir = (heroPos - (Vector2)transform.position).normalized;
         transform.position = transform.position+(dir * speed * Time.deltaTime);
     }
