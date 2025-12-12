@@ -93,9 +93,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4575238acfcc6a749bd71ba0ff50acfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy3
-  speed: 6
-  health: 4
+  attackCooldown: 0.707
+  attackRange: 0.678
+  speed: 12
+  health: 2
   knockbackForce: 8
+  damage: 3
   knockbackDuration: 0.3
   animator: {fileID: 6632167886995849728}
   spriteRenderer: {fileID: 8264430974563551656}
@@ -134,6 +137,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8307992189359999917}
     m_Modifications:
+    - target: {fileID: 4204579952800781854, guid: a78c3d35fa14fa84ba5ccbe92cb2fb05, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204579952800781854, guid: a78c3d35fa14fa84ba5ccbe92cb2fb05, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2109600323
+      objectReference: {fileID: 0}
     - target: {fileID: 4714345790778480270, guid: a78c3d35fa14fa84ba5ccbe92cb2fb05, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

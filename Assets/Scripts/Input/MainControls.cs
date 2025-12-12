@@ -118,6 +118,24 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Spawn"",
+                    ""type"": ""Value"",
+                    ""id"": ""d5d02309-77ad-4ab6-893f-cb5314fe7390"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SpawnClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a1968d0-640f-4e58-9766-616fe0261e23"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -186,6 +204,28 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de53b901-0800-4cd6-a5cc-cb97325684df"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0c78522-6325-4bad-9f92-6b57844c3f96"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpawnClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -197,6 +237,8 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
         m_Main_Attack = m_Main.FindAction("Attack", throwIfNotFound: true);
         m_Main_Movement = m_Main.FindAction("Movement", throwIfNotFound: true);
         m_Main_Jump = m_Main.FindAction("Jump", throwIfNotFound: true);
+        m_Main_Spawn = m_Main.FindAction("Spawn", throwIfNotFound: true);
+        m_Main_SpawnClick = m_Main.FindAction("SpawnClick", throwIfNotFound: true);
     }
 
     ~@MainControls()
@@ -280,6 +322,8 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_Attack;
     private readonly InputAction m_Main_Movement;
     private readonly InputAction m_Main_Jump;
+    private readonly InputAction m_Main_Spawn;
+    private readonly InputAction m_Main_SpawnClick;
     /// <summary>
     /// Provides access to input actions defined in input action map "Main".
     /// </summary>
@@ -303,6 +347,14 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Main/Jump".
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_Main_Jump;
+        /// <summary>
+        /// Provides access to the underlying input action "Main/Spawn".
+        /// </summary>
+        public InputAction @Spawn => m_Wrapper.m_Main_Spawn;
+        /// <summary>
+        /// Provides access to the underlying input action "Main/SpawnClick".
+        /// </summary>
+        public InputAction @SpawnClick => m_Wrapper.m_Main_SpawnClick;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -338,6 +390,12 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Spawn.started += instance.OnSpawn;
+            @Spawn.performed += instance.OnSpawn;
+            @Spawn.canceled += instance.OnSpawn;
+            @SpawnClick.started += instance.OnSpawnClick;
+            @SpawnClick.performed += instance.OnSpawnClick;
+            @SpawnClick.canceled += instance.OnSpawnClick;
         }
 
         /// <summary>
@@ -358,6 +416,12 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Spawn.started -= instance.OnSpawn;
+            @Spawn.performed -= instance.OnSpawn;
+            @Spawn.canceled -= instance.OnSpawn;
+            @SpawnClick.started -= instance.OnSpawnClick;
+            @SpawnClick.performed -= instance.OnSpawnClick;
+            @SpawnClick.canceled -= instance.OnSpawnClick;
         }
 
         /// <summary>
@@ -419,5 +483,19 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Spawn" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSpawn(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "SpawnClick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSpawnClick(InputAction.CallbackContext context);
     }
 }

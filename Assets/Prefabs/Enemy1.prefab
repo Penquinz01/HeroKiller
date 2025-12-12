@@ -47,9 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4575238acfcc6a749bd71ba0ff50acfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  attackCooldown: 0.825
+  attackRange: 2
   speed: 3
   health: 2
   knockbackForce: 10
+  damage: 1
   knockbackDuration: 0.3
   animator: {fileID: 8418472814511384339}
   spriteRenderer: {fileID: 8973644387183716493}
@@ -177,6 +180,14 @@ PrefabInstance:
     - target: {fileID: 7090473310562155332, guid: e116105cd610ee649b3b1b00849751ab, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139833877599633334, guid: e116105cd610ee649b3b1b00849751ab, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139833877599633334, guid: e116105cd610ee649b3b1b00849751ab, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2109600323
       objectReference: {fileID: 0}
     - target: {fileID: 8990696586968461616, guid: e116105cd610ee649b3b1b00849751ab, type: 3}
       propertyPath: m_Name

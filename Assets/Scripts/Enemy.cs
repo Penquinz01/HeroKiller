@@ -7,23 +7,35 @@ public class Enemy : MonoBehaviour,IEnemy
     Vector2 heroPos;
     GameObject hero;
     Vector3 dir;
+    [SerializeField][Range(0.1f,2f)]private float attackCooldown = 2f;
+    [SerializeField][Range(0.5f,2f)] private float attackRange = 1f;
+    private float attackTimer = 0;
+    private Hero heroScript;
     [SerializeField] float speed = 5f;
     [SerializeField]int health = 3;
     [SerializeField] float knockbackForce = 5;
     private Rigidbody2D rb;
     private bool isKnocking = false;
+    [SerializeField] int damage = 1;
     [SerializeField] private float knockbackDuration = 0.3f;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    private bool isEnded = false;
     void Start()
     {
+        attackTimer = 0;
         hero = GameObject.FindGameObjectWithTag("Hero");
+        heroScript = hero.gameObject.GetComponent<Hero>();
         heroPos = hero.transform.position;
         rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
+        if (isEnded)
+        {
+            return;
+        }
         heroPos = hero.transform.position;
         dir = (heroPos - (Vector2)transform.position).normalized;
         if (!isKnocking)
@@ -55,10 +67,31 @@ public class Enemy : MonoBehaviour,IEnemy
 
     private void Update()
     {
+        if (isEnded)
+        {
+            return;
+        }
+        if (hero == null)
+        {
+            isEnded = true;
+            return;
+        }
         if (Mathf.Abs((hero.transform.position - transform.position).magnitude) > 30f)
         {
             Die();
         }
+
+        if (Vector3.Distance(transform.position, hero.transform.position) <= attackRange && Time.time > attackTimer)
+        {
+            attackTimer = Time.time + attackCooldown;
+            Attack();
+        }
+    }
+
+    public void Attack()
+    {
+        animator.SetTrigger("IsAttack");
+        heroScript.TakeDamage(damage);
     }
 
     public void KnockBack()

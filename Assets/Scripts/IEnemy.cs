@@ -4,4 +4,5 @@ public interface IEnemy
     void Die();
 
     void KnockBack();
+    void Attack();
 }

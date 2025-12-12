@@ -1,7 +1,19 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
+public enum EnemyType
+{
+    Slime,
+    Ogre,
+    Vampire
+}
 public class EnemySpawner : MonoBehaviour
 {
+    private Camera mainCam;
+    MainControls mainControls;
+    private Vector2 mousePos;
     GameObject hero;
     Vector2 heroPos;
     int totalSpawned = 0;
@@ -21,8 +33,19 @@ public class EnemySpawner : MonoBehaviour
     //enemy type 3
     [SerializeField] GameObject enemy3;
     [SerializeField] int enemyCount3 = 3;
-    [SerializeField] float cooldown3 = 3f;
+    [SerializeField] private float cooldown3 = 3f;
 
+    private EnemyType currentType;
+
+
+    private void Awake()
+    {
+        mainCam = Camera.main;
+        mainControls = new MainControls();
+        mainControls.Main.Enable();
+        mainControls.Main.SpawnClick.started += OnMouseClick;
+        mainControls.Main.Spawn.performed += context =>mousePos = context.ReadValue<Vector2>() ;
+    }
 
     void Start()
     {
@@ -38,36 +61,15 @@ public class EnemySpawner : MonoBehaviour
         heroPos = hero.transform.position;
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (Time.time >= nextCool1)
-            {
-                for (int i = 0; i < enemyCount1; i++)
-                {
-                    spawnEnemy(enemy1);
-                }
-                nextCool1 = Time.time + cooldown1;
-            }
+            currentType = EnemyType.Slime;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (Time.time >= nextCool2)
-            {
-                for (int i = 0; i < enemyCount2; i++)
-                {
-                    spawnEnemy(enemy2);
-                }
-                nextCool2 = Time.time + cooldown2;
-            }
+            currentType = EnemyType.Ogre;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if (Time.time >= nextCool3)
-            {
-                for (int i = 0; i < enemyCount3; i++)
-                {
-                    spawnEnemy(enemy3);
-                }
-                nextCool3 = Time.time + cooldown3;
-            }
+            currentType = EnemyType.Vampire;
         }
 
         if (totalSpawned >= nextUpgradeAt)
@@ -76,6 +78,29 @@ public class EnemySpawner : MonoBehaviour
             nextUpgradeAt += 5;
             //upgradeCanvas.SetActive(true);
         }
+
+        
+    }
+
+    void OnMouseClick(InputAction.CallbackContext cxt)
+    {
+        Vector2 position = mainCam.ScreenToWorldPoint(mousePos);
+        GameObject enemyToSpawn = null;
+        switch (currentType)
+        {
+            case EnemyType.Slime:
+                enemyToSpawn = enemy1;
+                break;
+            case EnemyType.Ogre:
+                enemyToSpawn = enemy2;
+                break;
+            case EnemyType.Vampire:
+                enemyToSpawn = enemy3;
+                break;
+            default:
+                break;
+        }
+        Instantiate(enemyToSpawn,position,Quaternion.identity);
     }
 
     void spawnEnemy(GameObject en)

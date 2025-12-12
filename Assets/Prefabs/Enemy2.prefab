@@ -93,9 +93,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4575238acfcc6a749bd71ba0ff50acfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy2
+  attackCooldown: 2
+  attackRange: 0.771
   speed: 4
-  health: 6
+  health: 8
   knockbackForce: 6
+  damage: 5
   knockbackDuration: 0.3
   animator: {fileID: 2532486268005057555}
   spriteRenderer: {fileID: 9013368767579495569}
@@ -134,6 +137,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8307992189359999917}
     m_Modifications:
+    - target: {fileID: 1011641399121516277, guid: 22c9bccc9fe64e242aefc7e926ceb63c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1011641399121516277, guid: 22c9bccc9fe64e242aefc7e926ceb63c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2109600323
+      objectReference: {fileID: 0}
     - target: {fileID: 3722784566881946870, guid: 22c9bccc9fe64e242aefc7e926ceb63c, type: 3}
       propertyPath: m_Name
       value: Orc

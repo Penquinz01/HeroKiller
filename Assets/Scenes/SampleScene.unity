@@ -171,6 +171,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9049826812195482084, guid: e6c7c1330f63bae41a37f9fff9fdbe99, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049826812195482084, guid: e6c7c1330f63bae41a37f9fff9fdbe99, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2109600323
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4497153279289950132, guid: e6c7c1330f63bae41a37f9fff9fdbe99, type: 3}
     - {fileID: 867200851083546115, guid: e6c7c1330f63bae41a37f9fff9fdbe99, type: 3}
@@ -492,7 +500,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000007b6a71aabd0d4282
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -551,7 +559,6 @@ GameObject:
   - component: {fileID: 1769567508}
   - component: {fileID: 1769567507}
   - component: {fileID: 1769567509}
-  - component: {fileID: 1769567510}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Hero
@@ -651,8 +658,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50121563f29d26e4aa7e592e892922e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hero
-  attackCooldown: 1
-  attackRange: 1
+  attackCooldown: 0.5
+  attackRange: 1.5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -660,29 +667,6 @@ MonoBehaviour:
   moveSpeed: 5
   animator: {fileID: 1983376104}
   spriteRenderer: {fileID: 1983376105}
---- !u!114 &1769567510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769567504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eee4eff8e521fe3efb148674fbac0f06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterControllers.CharacterController2D
-  _col: {fileID: 1769567508}
-  _moveSpeed: 5
-  _accelarationTime: 0.2
-  _decelerationTime: 0.02
-  _groundCheckDistance: 0.2
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  _jumpHeight: 2
-  _jumpRange: 2
-  _gravity: 9.8
 --- !u!4 &1983376103 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8269808597549206546, guid: e6c7c1330f63bae41a37f9fff9fdbe99, type: 3}

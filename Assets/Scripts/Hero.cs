@@ -7,12 +7,10 @@ public class Hero : MonoBehaviour
     float hp = 100;
     private bool isBossSpawner = false;
     
-    private float attackSpeed = 1f;
     private bool isDead = false;
     [SerializeField]private float attackCooldown = 1f;
     [SerializeField]private float attackRange = 1f;
     [SerializeField]private LayerMask enemyLayer; 
-    private float attackTimer = 0f;
     Collider2D[] enemies;
     [SerializeField] int damage = 1;
     private Vector3 nextLoc = Vector3.zero;
@@ -28,10 +26,10 @@ public class Hero : MonoBehaviour
 
     private void Start()
     {
-        attackTimer = 0f;
         StartCoroutine(Attack());
         StartCoroutine(NextPosition());
     }
+    
 
     IEnumerator Attack()
     {
@@ -95,6 +93,21 @@ public class Hero : MonoBehaviour
         }
         rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
         
+    }
+    public void TakeDamage(int damage)
+    {
+        animator.SetTrigger("IsHurt");
+        hp -= damage;
+        if (hp <= 0 && !isDead)
+        {
+            Die();
+        }
+    }
+    private void Die()
+    {
+        isDead = true;
+        animator.SetTrigger("IsDead");
+        Destroy(this.gameObject, 1f);
     }
 }
 
