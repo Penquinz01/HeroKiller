@@ -17,29 +17,21 @@ public class EnemySpawner : MonoBehaviour
     GameObject hero;
     Vector2 heroPos;
     int totalSpawned = 0;
-    int nextUpgradeAt = 5;
-    GameObject upgradeCanvas;
-    [SerializeField] float xOffset;
-    [SerializeField] float yOffset;
+    [SerializeField] int nextUpgradeAt = 15;
+
+    [SerializeField] GameObject upgradeCanvas;
+    GameObject upManager;
     //enemy type 1
-    float nextCool1, nextCool2, nextCool3;
     [SerializeField] GameObject enemy1;
-    [SerializeField] int enemyCount1 = 3;
-    [SerializeField] float cooldown1 = 3f;
 
 
     //enemy type 2
     [SerializeField] GameObject enemy2;
-    [SerializeField] int enemyCount2 = 3;
-    [SerializeField] float cooldown2 = 3f;
 
     //enemy type 3
     [SerializeField] GameObject enemy3;
-    [SerializeField] int enemyCount3 = 3;
-    [SerializeField] private float cooldown3 = 3f;
 
     private EnemyType currentType;
-    [SerializeField]private AudioClip spawnSound;
 
 
     private void Awake()
@@ -54,11 +46,6 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         hero = GameObject.FindGameObjectWithTag("Hero");
-       // upgradeCanvas = GameObject.FindGameObjectWithTag("UpgradeCanvas");
-        heroPos = hero.transform.position;
-        nextCool1 = 0f;
-        nextCool2 = cooldown2;
-        nextCool3 = cooldown3;
     }
     void Update()
     {
@@ -75,12 +62,17 @@ public class EnemySpawner : MonoBehaviour
         {
             currentType = EnemyType.Vampire;
         }
+
         if (totalSpawned >= nextUpgradeAt)
         {
             totalSpawned = 0;
-            nextUpgradeAt += 5;
-            //upgradeCanvas.SetActive(true);
-        } 
+            nextUpgradeAt += 15;
+            upgradeCanvas.SetActive(true);
+            upManager=upgradeCanvas.transform.GetChild(2).gameObject;
+            upManager.GetComponent<UpgradeManager>().canReset = true;
+        }
+
+        
     }
 
     void OnMouseClick(InputAction.CallbackContext cxt)
@@ -111,23 +103,8 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
         Instantiate(enemyToSpawn,position,Quaternion.identity);
-        AudioSource.PlayClipAtPoint(spawnSound, position);
-    }
-
-    void spawnEnemy(GameObject en)
-    {
-        
         totalSpawned++;
-        int ch = Random.Range(1, 5); // 1:left, 2:top, 3:right, 4:bottom
-        switch (ch)
-        {
-            case 1: Instantiate(en, new Vector2(heroPos.x - xOffset, heroPos.y + Random.Range(-yOffset, yOffset)), Quaternion.identity); break; //left
-            case 2: Instantiate(en, new Vector2(heroPos.x + Random.Range(-xOffset, xOffset), heroPos.y + yOffset), Quaternion.identity); break; //top
-            case 3: Instantiate(en, new Vector2(heroPos.x + xOffset, heroPos.y + Random.Range(-yOffset, yOffset)), Quaternion.identity); break; //right
-            case 4: Instantiate(en, new Vector2(heroPos.x + Random.Range(-xOffset, xOffset), heroPos.y - yOffset), Quaternion.identity); break; //bottom
-        }
     }
-
     
 }
 
