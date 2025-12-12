@@ -80,6 +80,7 @@ public class Hero : MonoBehaviour
 
     private void FixedUpdate()
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y * 0.0001f);
         Vector2 direction = (nextLoc - transform.position).normalized;
         if((nextLoc - transform.position).magnitude < 0.5f)
         {

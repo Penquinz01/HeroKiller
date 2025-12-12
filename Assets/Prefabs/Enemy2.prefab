@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy2
   attackCooldown: 2
-  attackRange: 0.771
+  attackRange: 1.5
   speed: 4
   health: 8
   knockbackForce: 6

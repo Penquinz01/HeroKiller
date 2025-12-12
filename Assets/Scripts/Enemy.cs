@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour,IEnemy
 
     void FixedUpdate()
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y * 0.0001f);
         if (isEnded)
         {
             return;
