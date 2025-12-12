@@ -404,8 +404,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
   TrackerSettings:
-    BindingMode: 4
-    PositionDamping: {x: 1, y: 1, z: 1}
+    BindingMode: 5
+    PositionDamping: {x: 1.57, y: 1.63, z: 1}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
@@ -481,6 +481,7 @@ GameObject:
   - component: {fileID: 1769567508}
   - component: {fileID: 1769567507}
   - component: {fileID: 1769567509}
+  - component: {fileID: 1769567510}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Hero
@@ -574,7 +575,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 15
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -638,6 +639,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50121563f29d26e4aa7e592e892922e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hero
+  attackCooldown: 1
+  attackRange: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  damage: 1
+--- !u!114 &1769567510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769567504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee4eff8e521fe3efb148674fbac0f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterControllers.CharacterController2D
+  _col: {fileID: 1769567508}
+  _moveSpeed: 5
+  _accelarationTime: 0.2
+  _decelerationTime: 0.02
+  _groundCheckDistance: 0.2
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _jumpHeight: 2
+  _jumpRange: 2
+  _gravity: 9.8
 --- !u!1 &2006740316
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 795490821548491516}
   - component: {fileID: 7281224722661867591}
   - component: {fileID: 4887694997155524882}
-  m_Layer: 0
+  - component: {fileID: 2949292646734721723}
+  m_Layer: 7
   m_Name: Enemy2
   m_TagString: Enemy2
   m_Icon: {fileID: 0}
@@ -148,7 +149,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 6922050159711063858}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faed0deaed4606f4697c87becfb00c16, type: 3}
+  m_Script: {fileID: 11500000, guid: 4575238acfcc6a749bd71ba0ff50acfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy2
-  speed: 2
+  speed: 4
+  health: 1
+  knockbackForce: 3
+--- !u!50 &2949292646734721723
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6922050159711063858}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

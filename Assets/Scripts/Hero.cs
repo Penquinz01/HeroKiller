@@ -1,32 +1,79 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
     float hp = 100;
+    private bool isBossSpawner = false;
+    
+    private float attackSpeed = 1f;
+    private bool isDead = false;
+    [SerializeField]private float attackCooldown = 1f;
+    [SerializeField]private float attackRange = 1f;
+    [SerializeField]private LayerMask enemyLayer; 
+    private float attackTimer = 0f;
+    Collider2D[] enemies;
+    [SerializeField] int damage = 1;
+    private Vector3 nextLoc = Vector3.zero;
+    [SerializeField] private float moveSpeed = 5f;
+    private Rigidbody2D rb;
 
-    void Start()
+    private void Awake()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Start()
     {
-        
+        attackTimer = 0f;
+        StartCoroutine(Attack());
+        StartCoroutine(NextPosition());
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    IEnumerator Attack()
     {
-        if (collision.collider.CompareTag("Enemy1"))
+        while (!isDead)
         {
-            hp = hp - 5;
+            
+            enemies = Physics2D.OverlapCircleAll(transform.position, attackRange,enemyLayer);
+            bool enemyInRange = enemies.Length > 0;
+            if (!enemyInRange)
+            {
+                yield return null;
+                continue;
+            }
+
+            foreach (var enemy in enemies)
+            {
+                var enemyComponent = enemy.GetComponent<IEnemy>();
+                if (enemyComponent != null)
+                {
+                    enemyComponent.TakeDamage(damage);
+                }
+            }
+            yield return new WaitForSeconds(attackCooldown);
         }
-        if (collision.collider.CompareTag("Enemy2"))
+    }
+
+    IEnumerator NextPosition()
+    {
+        while (!isDead)
         {
-            hp = hp - 10;
+            nextLoc = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-4f, 4f), 0);
+            nextLoc += transform.position;
+            yield return new WaitForSeconds(3f);
         }
-        if (collision.collider.CompareTag("Enemy3"))
+    }
+
+    private void FixedUpdate()
+    {
+        Vector2 direction = (nextLoc - transform.position).normalized;
+        if(rb.linearVelocity.sqrMagnitude < moveSpeed * moveSpeed)
         {
-            hp = hp - 15;
+            rb.AddForce(direction * moveSpeed);
         }
+        
     }
 }
+
