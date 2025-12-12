@@ -8,7 +8,7 @@ public class Hero : MonoBehaviour
     float hp = 100;
     private bool isBossSpawner = false;
     
-    private bool isDead = false;
+    public bool isDead { get; private set; } = false;
     [SerializeField]private float attackCooldown = 1f;
     [SerializeField]private float attackRange = 1f;
     [SerializeField]private LayerMask enemyLayer; 

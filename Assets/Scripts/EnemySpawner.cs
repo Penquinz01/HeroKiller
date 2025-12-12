@@ -91,6 +91,11 @@ public class EnemySpawner : MonoBehaviour
         {
             return;
         }
+
+        if (GameManager.instance.isPaused)
+        {
+            return;
+        }
         Vector2 position = mainCam.ScreenToWorldPoint(mousePos);
         GameObject enemyToSpawn = null;
         switch (currentType)
