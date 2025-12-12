@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         hero = GameObject.FindGameObjectWithTag("Hero");
-        upgradeCanvas = GameObject.FindGameObjectWithTag("UpgradeCanvas");
+       // upgradeCanvas = GameObject.FindGameObjectWithTag("UpgradeCanvas");
         heroPos = hero.transform.position;
         nextCool1 = 0f;
         nextCool2 = cooldown2;
@@ -74,7 +74,7 @@ public class EnemySpawner : MonoBehaviour
         {
             totalSpawned = 0;
             nextUpgradeAt += 5;
-            upgradeCanvas.SetActive(true);
+            //upgradeCanvas.SetActive(true);
         }
     }
 

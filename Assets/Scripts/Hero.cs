@@ -60,19 +60,23 @@ public class Hero : MonoBehaviour
     {
         while (!isDead)
         {
+
+
             nextLoc = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-4f, 4f), 0);
+            
             nextLoc += transform.position;
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1f);
         }
     }
 
     private void FixedUpdate()
     {
         Vector2 direction = (nextLoc - transform.position).normalized;
-        if(rb.linearVelocity.sqrMagnitude < moveSpeed * moveSpeed)
+        if((nextLoc - transform.position).magnitude < 0.5f)
         {
-            rb.AddForce(direction * moveSpeed);
+            direction = Vector2.zero;
         }
+        rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
         
     }
 }

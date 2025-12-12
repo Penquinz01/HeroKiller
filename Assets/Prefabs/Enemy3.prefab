@@ -152,9 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4575238acfcc6a749bd71ba0ff50acfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy3
-  speed: 3
+  speed: 6
   health: 5
-  knockbackForce: 1
+  knockbackForce: 8
 --- !u!50 &3449634883342829750
 Rigidbody2D:
   serializedVersion: 5
