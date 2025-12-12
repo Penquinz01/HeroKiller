@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour,IEnemy
     private Rigidbody2D rb;
     private bool isKnocking = false;
     [SerializeField] private float knockbackDuration = 0.3f;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
     void Start()
     {
         hero = GameObject.FindGameObjectWithTag("Hero");
@@ -26,13 +28,19 @@ public class Enemy : MonoBehaviour,IEnemy
         dir = (heroPos - (Vector2)transform.position).normalized;
         if (!isKnocking)
         {
-            rb.linearVelocity = dir * speed;
+            rb.linearVelocity = dir * speed;   
+            animator.SetBool("IsWalking", true);
+            if (dir.x < 0)
+                spriteRenderer.flipX = true;
+            else if (dir.x > 0)
+                spriteRenderer.flipX = false;
         }
     }
 
     public void TakeDamage(int damage)
     {
         KnockBack();
+        animator.SetTrigger("IsHurt");
         health -= damage;
         if (health <= 0)
         {
@@ -42,7 +50,7 @@ public class Enemy : MonoBehaviour,IEnemy
 
     public void Die()
     {
-        Destroy(this.gameObject);
+        Destroy(this.gameObject, 0.5f);
     }
 
     private void Update()

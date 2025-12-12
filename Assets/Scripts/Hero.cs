@@ -18,6 +18,8 @@ public class Hero : MonoBehaviour
     private Vector3 nextLoc = Vector3.zero;
     [SerializeField] private float moveSpeed = 5f;
     private Rigidbody2D rb;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
@@ -43,7 +45,13 @@ public class Hero : MonoBehaviour
                 yield return null;
                 continue;
             }
-
+            var enemyPosition = enemies[0].transform.position;
+            Vector3 dir = (enemyPosition - transform.position).normalized;
+            if (dir.x < 0)
+                spriteRenderer.flipX = true;
+            else if (dir.x > 0)
+                spriteRenderer.flipX = false;
+            animator.SetTrigger("IsAttack");        
             foreach (var enemy in enemies)
             {
                 var enemyComponent = enemy.GetComponent<IEnemy>();
@@ -61,7 +69,7 @@ public class Hero : MonoBehaviour
         while (!isDead)
         {
 
-
+            
             nextLoc = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-4f, 4f), 0);
             
             nextLoc += transform.position;
@@ -75,6 +83,15 @@ public class Hero : MonoBehaviour
         if((nextLoc - transform.position).magnitude < 0.5f)
         {
             direction = Vector2.zero;
+            animator.SetBool("IsWalking", false);
+        }
+        else
+        {
+            animator.SetBool("IsWalking", true);
+            if (direction.x < 0)
+                spriteRenderer.flipX = true;
+            else if (direction.x > 0)
+                spriteRenderer.flipX = false;
         }
         rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
         
