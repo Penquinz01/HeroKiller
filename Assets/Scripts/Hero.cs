@@ -17,9 +17,14 @@ public class Hero : MonoBehaviour
     private Vector3 nextLoc = Vector3.zero;
     [SerializeField] private float moveSpeed = 5f;
     private Rigidbody2D rb;
-    public Animator animator;
-    public SpriteRenderer spriteRenderer;
+    [SerializeField]private Animator animator;
+    [SerializeField]private SpriteRenderer spriteRenderer;
     private CinemachineImpulseSource impulseSource;
+
+    #region Audio
+    [SerializeField]private AudioClip attackSound;
+    [SerializeField]private AudioClip hurtSound;
+    #endregion
 
     private void Awake()
     {
@@ -52,7 +57,8 @@ public class Hero : MonoBehaviour
                 spriteRenderer.flipX = true;
             else if (dir.x > 0)
                 spriteRenderer.flipX = false;
-            animator.SetTrigger("IsAttack");        
+            animator.SetTrigger("IsAttack");     
+            AudioSource.PlayClipAtPoint(attackSound, transform.position);   
             foreach (var enemy in enemies)
             {
                 var enemyComponent = enemy.GetComponent<IEnemy>();
@@ -102,6 +108,7 @@ public class Hero : MonoBehaviour
     {
         impulseSource.GenerateImpulse();
         animator.SetTrigger("IsHurt");
+        AudioSource.PlayClipAtPoint(hurtSound, transform.position);
         hp -= damage;
         if (hp <= 0 && !isDead)
         {

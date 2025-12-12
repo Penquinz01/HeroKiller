@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour,IEnemy
 {
@@ -18,10 +20,11 @@ public class Enemy : MonoBehaviour,IEnemy
     private bool isKnocking = false;
     [SerializeField] int damage = 1;
     [SerializeField] private float knockbackDuration = 0.3f;
-    public Animator animator;
-    public SpriteRenderer spriteRenderer;
+    [SerializeField]private Animator animator;
+    [SerializeField]private SpriteRenderer spriteRenderer;
     private bool isEnded = false;
     [SerializeField]private float cost;
+    [SerializeField]private List<AudioClip> hurtSounds;
     void Start()
     {
         GameManager.instance.SpendEnemyCost(cost);
@@ -38,10 +41,8 @@ public class Enemy : MonoBehaviour,IEnemy
     void FixedUpdate()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y * 0.0001f);
-        if (heroScript.isDead || isEnded)
-        {
-            return;
-        }
+        if (hero == null) return;
+        if (heroScript.isDead || isEnded) return;
         heroPos = hero.transform.position;
         dir = (heroPos - (Vector2)transform.position).normalized;
         if (dir.magnitude < 1f)
@@ -65,6 +66,7 @@ public class Enemy : MonoBehaviour,IEnemy
     {
         KnockBack();
         animator.SetTrigger("IsHurt");
+        AudioSource.PlayClipAtPoint(hurtSounds[Random.Range(0, hurtSounds.Count)], transform.position);
         health -= damage;
         if (health <= 0)
         {

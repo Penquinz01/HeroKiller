@@ -39,6 +39,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float cooldown3 = 3f;
 
     private EnemyType currentType;
+    [SerializeField]private AudioClip spawnSound;
 
 
     private void Awake()
@@ -74,15 +75,12 @@ public class EnemySpawner : MonoBehaviour
         {
             currentType = EnemyType.Vampire;
         }
-
         if (totalSpawned >= nextUpgradeAt)
         {
             totalSpawned = 0;
             nextUpgradeAt += 5;
             //upgradeCanvas.SetActive(true);
-        }
-
-        
+        } 
     }
 
     void OnMouseClick(InputAction.CallbackContext cxt)
@@ -113,6 +111,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
         Instantiate(enemyToSpawn,position,Quaternion.identity);
+        AudioSource.PlayClipAtPoint(spawnSound, position);
     }
 
     void spawnEnemy(GameObject en)
