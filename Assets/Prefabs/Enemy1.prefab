@@ -58,9 +58,9 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8973644387183716493}
   cost: 1
   hurtSounds:
-  - {fileID: 8300000, guid: 1d1bf91e492c35348ab0065ad106dfa6, type: 3}
-  - {fileID: 8300000, guid: 847ceb43a77cc7e4faa9ccdaf92dd321, type: 3}
-  - {fileID: 8300000, guid: c39b1789d10518d4ebd35e98768db46e, type: 3}
+  - {fileID: 8300000, guid: f36a9ed15041542ba9070bd7449177bf, type: 3}
+  - {fileID: 8300000, guid: b408ffbad0c40813788dc4fc35542bc8, type: 3}
+  - {fileID: 8300000, guid: 651781bdc1eabc8e2a9d8e141949e6f5, type: 3}
 --- !u!61 &7281224722661867591
 BoxCollider2D:
   m_ObjectHideFlags: 0

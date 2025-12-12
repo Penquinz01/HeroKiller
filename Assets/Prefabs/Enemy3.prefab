@@ -104,9 +104,9 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8264430974563551656}
   cost: 3
   hurtSounds:
-  - {fileID: 8300000, guid: 8ca338625ca4f3a4ebe390d294d4c71e, type: 3}
-  - {fileID: 8300000, guid: 6da09229cbd3e5a488b260b149357175, type: 3}
-  - {fileID: 8300000, guid: f5addd0610ccec145a2e8d5305759e26, type: 3}
+  - {fileID: 8300000, guid: becc4e745413ae2f3b7ccc5f7cf0d2ed, type: 3}
+  - {fileID: 8300000, guid: d730fcfb8dd6c0c15b2cc6f88e7b9893, type: 3}
+  - {fileID: 8300000, guid: f4f8a9ef9ef5781868e55186b52975c1, type: 3}
 --- !u!50 &3449634883342829750
 Rigidbody2D:
   serializedVersion: 5

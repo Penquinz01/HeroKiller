@@ -106,7 +106,7 @@ MonoBehaviour:
   hurtSounds:
   - {fileID: 8300000, guid: 09a47fde8e2c40f4b93850698b4a8f60, type: 3}
   - {fileID: 8300000, guid: e26cf1db6598ef941ba3cdc3a09ea3ac, type: 3}
-  - {fileID: 8300000, guid: 44c018a1ab7e3424caac32c4e42e3b10, type: 3}
+  - {fileID: 8300000, guid: 6f16a22253a12df3f90b8ba0f8f5dbc6, type: 3}
   - {fileID: 8300000, guid: 4ad3a29d484afee4f964fb5ad78d04da, type: 3}
 --- !u!50 &2949292646734721723
 Rigidbody2D:
