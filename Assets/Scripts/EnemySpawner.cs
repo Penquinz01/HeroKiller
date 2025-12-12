@@ -4,6 +4,9 @@ public class EnemySpawner : MonoBehaviour
 {
     GameObject hero;
     Vector2 heroPos;
+    int totalSpawned = 0;
+    int nextUpgradeAt = 5;
+    GameObject upgradeCanvas;
     [SerializeField] float xOffset;
     [SerializeField] float yOffset;
     //enemy type 1
@@ -24,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         hero = GameObject.FindGameObjectWithTag("Hero");
+        upgradeCanvas = GameObject.FindGameObjectWithTag("UpgradeCanvas");
         heroPos = hero.transform.position;
         nextCool1 = 0f;
         nextCool2 = cooldown2;
@@ -38,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 for (int i = 0; i < enemyCount1; i++)
                 {
-                    spawnEnemy();
+                    spawnEnemy(enemy1);
                 }
                 nextCool1 = Time.time + cooldown1;
             }
@@ -49,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 for (int i = 0; i < enemyCount2; i++)
                 {
-                    spawnEnemy();
+                    spawnEnemy(enemy2);
                 }
                 nextCool2 = Time.time + cooldown2;
             }
@@ -60,22 +64,33 @@ public class EnemySpawner : MonoBehaviour
             {
                 for (int i = 0; i < enemyCount3; i++)
                 {
-                    spawnEnemy();
+                    spawnEnemy(enemy3);
                 }
                 nextCool3 = Time.time + cooldown3;
             }
         }
+
+        if (totalSpawned >= nextUpgradeAt)
+        {
+            totalSpawned = 0;
+            nextUpgradeAt += 5;
+            upgradeCanvas.SetActive(true);
+        }
     }
 
-    void spawnEnemy()
+    void spawnEnemy(GameObject en)
     {
+        totalSpawned++;
         int ch = Random.Range(1, 5); // 1:left, 2:top, 3:right, 4:bottom
         switch (ch)
         {
-            case 1: Instantiate(enemy1, new Vector2(heroPos.x - xOffset, heroPos.y + Random.Range(-yOffset, yOffset)), Quaternion.identity); break; //left
-            case 2: Instantiate(enemy1, new Vector2(heroPos.x + Random.Range(-xOffset, xOffset), heroPos.y + yOffset), Quaternion.identity); break;  //top
-            case 3: Instantiate(enemy1, new Vector2(heroPos.x + xOffset, heroPos.y + Random.Range(-yOffset, yOffset)), Quaternion.identity); break; //right
-            case 4: Instantiate(enemy1, new Vector2(heroPos.x + Random.Range(-xOffset, xOffset), heroPos.y - yOffset), Quaternion.identity); break; //bottom
+            case 1: Instantiate(en, new Vector2(heroPos.x - xOffset, heroPos.y + Random.Range(-yOffset, yOffset)), Quaternion.identity); break; //left
+            case 2: Instantiate(en, new Vector2(heroPos.x + Random.Range(-xOffset, xOffset), heroPos.y + yOffset), Quaternion.identity); break; //top
+            case 3: Instantiate(en, new Vector2(heroPos.x + xOffset, heroPos.y + Random.Range(-yOffset, yOffset)), Quaternion.identity); break; //right
+            case 4: Instantiate(en, new Vector2(heroPos.x + Random.Range(-xOffset, xOffset), heroPos.y - yOffset), Quaternion.identity); break; //bottom
         }
     }
+
+    
 }
+
