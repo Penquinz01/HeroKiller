@@ -32,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject enemy3;
 
     private EnemyType currentType;
+    [SerializeField] private AudioClip spawnSound;
 
 
     private void Awake()
@@ -103,6 +104,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
         }
         Instantiate(enemyToSpawn,position,Quaternion.identity);
+        AudioSource.PlayClipAtPoint(spawnSound, position);
         totalSpawned++;
     }
     

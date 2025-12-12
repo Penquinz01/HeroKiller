@@ -1097,6 +1097,7 @@ GameObject:
   m_Component:
   - component: {fileID: 587635333}
   - component: {fileID: 587635332}
+  - component: {fileID: 587635334}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1132,6 +1133,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &587635334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587635331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f789deef5d39944a6c1bd698626955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicManager
+  backgroundMusic: {fileID: 8300000, guid: c7cb347a7c58c1a44b4516286217b25d, type: 3}
 --- !u!1 &591183785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2555,7 +2569,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2583,6 +2597,8 @@ MonoBehaviour:
   moveSpeed: 5
   animator: {fileID: 1983376104}
   spriteRenderer: {fileID: 1983376105}
+  attackSound: {fileID: 8300000, guid: 87e2452fe2c754248926c9a9ab93a467, type: 3}
+  hurtSound: {fileID: 8300000, guid: 558f9f56f603a954b8d45e17e89341d9, type: 3}
 --- !u!114 &1769567510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2685,6 +2701,7 @@ MonoBehaviour:
   enemy1: {fileID: 6922050159711063858, guid: ec13c6ab057af234294953b1f7cac798, type: 3}
   enemy2: {fileID: 6922050159711063858, guid: 86055af62fd81c24aa32294a2aa9f6ae, type: 3}
   enemy3: {fileID: 6922050159711063858, guid: b1da81081cfc98c468592728481757e6, type: 3}
+  spawnSound: {fileID: 8300000, guid: c134bf6bd85561b4b938c913b97b57c9, type: 3}
 --- !u!4 &2006740318
 Transform:
   m_ObjectHideFlags: 0
