@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
@@ -18,9 +19,11 @@ public class Hero : MonoBehaviour
     private Rigidbody2D rb;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    private CinemachineImpulseSource impulseSource;
 
     private void Awake()
     {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -96,6 +99,7 @@ public class Hero : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        impulseSource.GenerateImpulse();
         animator.SetTrigger("IsHurt");
         hp -= damage;
         if (hp <= 0 && !isDead)
