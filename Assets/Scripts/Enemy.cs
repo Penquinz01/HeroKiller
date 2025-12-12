@@ -27,8 +27,11 @@ public class Enemy : MonoBehaviour,IEnemy
         GameManager.instance.SpendEnemyCost(cost);
         attackTimer = 0;
         hero = GameObject.FindGameObjectWithTag("Hero");
-        heroScript = hero.gameObject.GetComponent<Hero>();
-        heroPos = hero.transform.position;
+        if (hero != null)
+        {
+            heroScript = hero.gameObject.GetComponent<Hero>();
+            heroPos = hero.transform.position;
+        }
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -41,7 +44,13 @@ public class Enemy : MonoBehaviour,IEnemy
         }
         heroPos = hero.transform.position;
         dir = (heroPos - (Vector2)transform.position).normalized;
-        if (!isKnocking)
+        if (dir.magnitude < 1f)
+        {
+            animator.SetBool("IsWalking", false);
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+        else if (!isKnocking)
         {
             rb.linearVelocity = dir * speed;   
             animator.SetBool("IsWalking", true);

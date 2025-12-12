@@ -61,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void Update()
     {
-        heroPos = hero.transform.position;
+        if (hero != null) heroPos = hero.transform.position;
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentType = EnemyType.Slime;
