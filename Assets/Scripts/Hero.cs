@@ -75,10 +75,7 @@ public class Hero : MonoBehaviour
     {
         while (!isDead)
         {
-
-            
             nextLoc = new Vector3(UnityEngine.Random.Range(-8f, 8f), UnityEngine.Random.Range(-4f, 4f), 0);
-            
             nextLoc += transform.position;
             yield return new WaitForSeconds(1f);
         }
