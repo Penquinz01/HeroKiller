@@ -115,6 +115,7 @@ public class Hero : MonoBehaviour
     private void Die()
     {
         isDead = true;
+        GameManager.instance.Win();
         //animator.SetTrigger("IsDead");
         Destroy(this.gameObject, 1f);
     }

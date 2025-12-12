@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Canvas PauseCanvas;
     private float enemyCost = 10;
     private MainControls mainControls;
+    [SerializeField] private Canvas canvas; 
     public bool isPaused { get; private set; } = false;
     private void Awake()
     {
@@ -78,5 +79,9 @@ public class GameManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+    public void Win()
+    {
+        canvas.enabled = true;
     }
 }
