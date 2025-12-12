@@ -102,6 +102,7 @@ MonoBehaviour:
   knockbackDuration: 0.3
   animator: {fileID: 2532486268005057555}
   spriteRenderer: {fileID: 9013368767579495569}
+  cost: 2
 --- !u!50 &2949292646734721723
 Rigidbody2D:
   serializedVersion: 5

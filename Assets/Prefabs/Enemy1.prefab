@@ -56,6 +56,7 @@ MonoBehaviour:
   knockbackDuration: 0.3
   animator: {fileID: 8418472814511384339}
   spriteRenderer: {fileID: 8973644387183716493}
+  cost: 1
 --- !u!61 &7281224722661867591
 BoxCollider2D:
   m_ObjectHideFlags: 0

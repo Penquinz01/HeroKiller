@@ -21,8 +21,10 @@ public class Enemy : MonoBehaviour,IEnemy
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     private bool isEnded = false;
+    [SerializeField]private float cost;
     void Start()
     {
+        GameManager.instance.SpendEnemyCost(cost);
         attackTimer = 0;
         hero = GameObject.FindGameObjectWithTag("Hero");
         heroScript = hero.gameObject.GetComponent<Hero>();
@@ -64,6 +66,7 @@ public class Enemy : MonoBehaviour,IEnemy
     public void Die()
     {
         Destroy(this.gameObject, 0.5f);
+        GameManager.instance.ReplenishEnemyCost(cost);
     }
 
     private void Update()

@@ -26,10 +26,13 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject enemy1;
     [SerializeField] int enemyCount1 = 3;
     [SerializeField] float cooldown1 = 3f;
+
+
     //enemy type 2
     [SerializeField] GameObject enemy2;
     [SerializeField] int enemyCount2 = 3;
     [SerializeField] float cooldown2 = 3f;
+
     //enemy type 3
     [SerializeField] GameObject enemy3;
     [SerializeField] int enemyCount3 = 3;
@@ -84,6 +87,10 @@ public class EnemySpawner : MonoBehaviour
 
     void OnMouseClick(InputAction.CallbackContext cxt)
     {
+        if (!GameManager.instance.CanSpawnEnemy())
+        {
+            return;
+        }
         Vector2 position = mainCam.ScreenToWorldPoint(mousePos);
         GameObject enemyToSpawn = null;
         switch (currentType)
@@ -105,6 +112,7 @@ public class EnemySpawner : MonoBehaviour
 
     void spawnEnemy(GameObject en)
     {
+        
         totalSpawned++;
         int ch = Random.Range(1, 5); // 1:left, 2:top, 3:right, 4:bottom
         switch (ch)
