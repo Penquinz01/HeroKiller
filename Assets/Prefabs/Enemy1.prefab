@@ -57,6 +57,10 @@ MonoBehaviour:
   animator: {fileID: 8418472814511384339}
   spriteRenderer: {fileID: 8973644387183716493}
   cost: 1
+  hurtSounds:
+  - {fileID: 8300000, guid: 1d1bf91e492c35348ab0065ad106dfa6, type: 3}
+  - {fileID: 8300000, guid: 847ceb43a77cc7e4faa9ccdaf92dd321, type: 3}
+  - {fileID: 8300000, guid: c39b1789d10518d4ebd35e98768db46e, type: 3}
 --- !u!61 &7281224722661867591
 BoxCollider2D:
   m_ObjectHideFlags: 0

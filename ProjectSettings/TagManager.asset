@@ -8,6 +8,7 @@ TagManager:
   - Enemy1
   - Enemy2
   - Enemy3
+  - UpgradeScreen
   layers:
   - Default
   - TransparentFX
