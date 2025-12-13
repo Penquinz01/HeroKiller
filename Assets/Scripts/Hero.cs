@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
-    float hp = 100;
+    [SerializeField]float maxHP = 100;
+    float hp;
     private bool isBossSpawner = false;
     
     public bool isDead { get; private set; } = false;
@@ -36,6 +37,7 @@ public class Hero : MonoBehaviour
     {
         StartCoroutine(Attack());
         StartCoroutine(NextPosition());
+        hp= maxHP;
     }
     
 
@@ -119,5 +121,10 @@ public class Hero : MonoBehaviour
         //animator.SetTrigger("IsDead");
         Destroy(this.gameObject, 1f);
     }
+
+    public float getHP()
+    { return hp; }
+    public float getMaxHP()
+    { return maxHP; }
 }
 
