@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] private Canvas PauseCanvas;
-    private float enemyCost = 10;
+    [SerializeField] float maxEnemyCost = 10f;
+    private float enemyCost=10;
     private MainControls mainControls;
     [SerializeField] private Canvas canvas; 
     public bool isPaused { get; private set; } = false;
@@ -84,4 +85,7 @@ public class GameManager : MonoBehaviour
     {
         canvas.enabled = true;
     }
+
+    public float getMaxEnemyCost() { return maxEnemyCost; }
+    public float getEnemyCost() { return enemyCost; }
 }
