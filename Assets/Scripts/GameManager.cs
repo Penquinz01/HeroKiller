@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float maxEnemyCost = 10f;
     private float enemyCost=10;
     private MainControls mainControls;
-    [SerializeField] private Canvas canvas; 
+    [SerializeField] private GameObject canvas; 
     public bool isPaused { get; private set; } = false;
     private void Awake()
     {
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
     }
     public void Win()
     {
-        canvas.enabled = true;
+        canvas.SetActive(true);
     }
 
     public float getMaxEnemyCost() { return maxEnemyCost; }
