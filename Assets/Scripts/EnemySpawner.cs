@@ -68,9 +68,9 @@ public class EnemySpawner : MonoBehaviour
         {
             totalSpawned = 0;
             nextUpgradeAt += 10;
-            upgradeCanvas.SetActive(true);
+            /**upgradeCanvas.SetActive(true);
             upManager=upgradeCanvas.transform.GetChild(2).gameObject;
-            upManager.GetComponent<UpgradeManager>().canReset = true;
+            upManager.GetComponent<UpgradeManager>().canReset = true;**/
         }
 
         
